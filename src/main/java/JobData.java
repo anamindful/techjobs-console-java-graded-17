@@ -71,9 +71,11 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
+        value = value.toLowerCase(); //convert search to lowercase
+
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = row.get(column).toLowerCase(); //convert value to lowercase
 
             if (aValue.contains(value)) {
                 jobs.add(row);
@@ -94,8 +96,27 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+
+        value = value.toLowerCase(); //convert search to lowercase
+
+        for(HashMap<String, String> row : allJobs) {
+            boolean found = false;
+            for (String key : row.keySet()) {
+                String cellValue = row.get(key).toLowerCase();
+                if (cellValue.contains(value)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                matchingJobs.add(row);
+            }
+        }
+        //to remove duplicates
+        ArrayList<HashMap<String, String>> uniqueJobs = new ArrayList<>(matchingJobs);
+
+        return uniqueJobs;
     }
 
     /**
