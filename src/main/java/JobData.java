@@ -93,12 +93,12 @@ public class JobData {
      */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
-        // load data, if not already loaded
+        //load data, if not already loaded
         loadData();
 
         ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
 
-        value = value.toLowerCase(); //convert search to lowercase
+        value = value.toLowerCase(); //convert search tolowercase
 
         for(HashMap<String, String> row : allJobs) {
             boolean found = false;
